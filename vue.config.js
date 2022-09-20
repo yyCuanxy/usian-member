@@ -16,10 +16,17 @@ module.exports = defineConfig({
     proxy: {
       // /dev-api代理名称
       [process.env.VUE_APP_BASE_API]: {
-        target: "process.env.VUE_APP_SERVICE.URL",
+        target: process.env.VUE_APP_SERVICE_URL,
         changeOrigin: true,
         pathRewrite: {
           ["^/" + process.env.VUE_APP_BASE_API]: "",
+        },
+      },
+      [process.env.VUE_APP_BASE_API1]: {
+        target: process.env.VUE_APP_SERVICE_URL1,
+        changeOrigin: true,
+        pathRewrite: {
+          ["^/" + process.env.VUE_APP_BASE_API1]: "",
         },
       },
       // "/dev-api1": {

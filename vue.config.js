@@ -1,9 +1,9 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
+  // 项目打包之后白屏问题
+  publicPath: "./",
   devServer: {
-    // 项目打包之后白屏问题
-    publicPath: "./",
     // 端口号
     port: 8888,
     // 主机名
@@ -16,7 +16,7 @@ module.exports = defineConfig({
     proxy: {
       // /dev-api代理名称
       [process.env.VUE_APP_BASE_API]: {
-        target: "http://localhost:3000",
+        target: "process.env.UVE_APP_SERVICE.URL",
         changeOrigin: true,
         pathRewrite: {
           ["^/" + process.env.VUE_APP_BASE_API]: "",

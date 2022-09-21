@@ -26,5 +26,15 @@ service.interceptors.response.use(
   }
 );
 
+// 解决不同请求方式时统一使用data来进行传参
+const request = (options) => {
+  options.method = options.method || 'get'
+  if(options.method.toLowerCase() === "get"){
+    options.params = options.data || options.params
+    delete options.data
+  }
+  return service(options)
+}
+
 // 导出实例对象
 export default service;

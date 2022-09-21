@@ -16,6 +16,10 @@ export default {
     return {
       page: 1,
       size: 10,
+      id:100,
+      test:{
+        name:"jack"
+      }
     };
   },
   components: {
@@ -23,7 +27,7 @@ export default {
   },
   created() {
     // 会员管理列表
-    TestApi.getMemberList(this.page, this.size)
+    TestApi.getMemberList(this.page, this.size,this.test)
       .then((response) => {
         console.log("member=>", response);
       })
@@ -34,6 +38,14 @@ export default {
     TestApi.getSupplierList(this.page, this.size)
       .then((response) => {
         console.log("supplier=>", response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      // 查询页面
+      TestApi.findMember(this.id)
+      .then((response) => {
+        console.log("find=>", response);
       })
       .catch((error) => {
         console.log(error);

@@ -8,31 +8,32 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-import axios from "axios";
+import TestApi from "../api/test.js";
 
 export default {
   name: "HomeView",
+  data() {
+    return {
+      page: 1,
+      size: 10,
+    };
+  },
   components: {
     HelloWorld,
   },
   created() {
-    axios({
-      url: process.env.VUE_APP_BASE_API + "/",
-      method: "GET",
-    })
+    // 会员管理列表
+    TestApi.getMemberList(this.page, this.size)
       .then((response) => {
-        console.log(response);
+        console.log("member=>", response);
       })
       .catch((error) => {
         console.log(error);
       });
-
-    axios({
-      url: "/dev1-api/",
-      method: "GET",
-    })
+    // 供应商管理
+    TestApi.getSupplierList(this.page, this.size)
       .then((response) => {
-        console.log(response);
+        console.log("supplier=>", response);
       })
       .catch((error) => {
         console.log(error);

@@ -19,16 +19,16 @@ module.exports = defineConfig({
         target: process.env.VUE_APP_SERVICE_URL,
         changeOrigin: true,
         pathRewrite: {
-          ["^/" + process.env.VUE_APP_BASE_API]: "",
+          ["^" + process.env.VUE_APP_BASE_API]: "",
         },
       },
-      [process.env.VUE_APP_BASE_API1]: {
-        target: process.env.VUE_APP_SERVICE_URL1,
-        changeOrigin: true,
-        pathRewrite: {
-          ["^/" + process.env.VUE_APP_BASE_API1]: "",
-        },
-      },
+      // [process.env.VUE_APP_BASE_API1]: {
+      //   target: process.env.VUE_APP_SERVICE_URL1,
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     ["^/" + process.env.VUE_APP_BASE_API1]: "",
+      //   },
+      // },
       // "/dev-api1": {
       //   // 跨域的地址
       //   target: "http://localhost:3000",

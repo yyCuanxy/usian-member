@@ -5,6 +5,30 @@
 // 发送请求 引入request
 import request from "../utils/request";
 
+const getBanner = () => {
+  //  
+  return request({
+    url:'/',
+    proxy:'/dev-v1'
+  })
+}
+const getList = () => {
+  return request({
+    url:'/',
+    proxy:'/dev-v2'
+  })
+ }
+const getLive = () => {
+  return request({
+    url:'/api/live'
+  })
+ }
+const getMenu = () => {
+  return request({
+    url:'/api/menu'
+  })
+ }
+
 // 获取会员列表接口
 const getMemberList = (page = 1, size = 10, data = {}) => {
   return request({
@@ -23,12 +47,12 @@ const getSupplierList = (page = 1, size = 10, data = {}) => {
 };
 
 // 查询单个会员接口
-const findMember=(id)=>{
+const findMember = (id) => {
   return request({
-    url:`/member/${id}`,
-    method:'GET',
-    data:{
-      age:10000
+    url: `/member/${id}`,
+    method: 'GET',
+    data: {
+      age: 10000
     }
   })
 }
@@ -36,5 +60,7 @@ const findMember=(id)=>{
 export default {
   getMemberList,
   getSupplierList,
-  findMember
+  findMember,
+  getBanner,
+  getList
 };

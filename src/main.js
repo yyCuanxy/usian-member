@@ -8,6 +8,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import "./style/reset.css"
+
 // 注册elementui
 Vue.use(ElementUI);
 

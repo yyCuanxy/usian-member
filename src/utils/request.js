@@ -4,11 +4,12 @@ import axios from "axios";
 // 自定义的错误信息提示内容
 const exceptionMessage = {
   1000: '用户名或者密码发生错误',
-  2000: 'xxx发生错误',
   3000: ''
 }
 
 import { Message } from "element-ui";
+
+import store from "../store"
 
 //创建axios实例配置, 返回实例对象
 const service = axios.create({
@@ -18,6 +19,9 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   function (config) {
+    const token = store.getters.token
+    // 当token存在的时候，则将token通过请求头发送给后台
+    if (token) config.headers.authorization = "Bearer " + token
     return config;
   },
   function (error) {
@@ -37,7 +41,7 @@ service.interceptors.response.use(
       return
     }
     _showError(response.data.code, response.data.message)
-    
+
     return response;
   },
   function (error) {
@@ -48,7 +52,7 @@ service.interceptors.response.use(
 //错误信息提示 
 const _showError = (errorCode, message) => {
   let title
-  title = exceptionMessage[errorCode]||message||'发生未知错误'
+  title = exceptionMessage[errorCode] || message || '发生未知错误'
   Message.error(title)
 }
 

@@ -7,4 +7,13 @@ export const login = (data = {}) => {
     method: "POST",
     data
   })
- }
+}
+
+// 接口在easymock里面模拟创建好了 下面是封装接口
+// 获取用户信息接口
+export const getUserInfo = () => {
+  return request({
+    url: '/admin/getUserInfo',
+    method: "GET"
+  })
+}

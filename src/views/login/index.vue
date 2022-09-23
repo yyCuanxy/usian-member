@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { login, getUserInfo } from '../../api/user'
 export default {
   name: '',
   components: {},
@@ -67,23 +66,33 @@ export default {
     },
     // 登录方法
     async handleLogin() {
-      //async异步操作
-      try {
-        const response = await login(this.LoginForm) //await 同步操作  //调用登录接口
-        // 将token存储到vuex
-        this.$store.dispatch('DIS_SET_TOKEN', response.token)
-        // 调用获取用户信息接口
-        const userInfo = await getUserInfo()
-        // 将用户信息存储到vuex以及本地
-        this.$store.dispatch('DIS_SET_USER_INFO', userInfo)
-        // 提示登录成功
-        this.$message.success('登录成功')
-        // 跳转到主页
-        this.$router.push('/')
-      } catch (e) {
-        console.log(e.message)
-      }
+      const token=await this.$store.dispatch("login",this.LoginForm)
+      // console.log("token=>",token);
+      if(!token) return
+      const userInfo=await this.$store.dispatch("handleUserInfo")
+      if(!userInfo) return
+      this.$message.success("登陆成功")
+      this.$router.push("/")
+
     }
+    // async handleLogin() {
+    //   //async异步操作
+    //   try {
+    //     const response = await login(this.LoginForm) //await 同步操作  //调用登录接口
+    //     // 将token存储到vuex
+    //     this.$store.dispatch('DIS_SET_TOKEN', response.token)
+    //     // 调用获取用户信息接口
+    //     const userInfo = await getUserInfo()
+    //     // 将用户信息存储到vuex以及本地
+    //     this.$store.dispatch('DIS_SET_USER_INFO', userInfo)
+    //     // 提示登录成功
+    //     this.$message.success('登录成功')
+    //     // 跳转到主页
+    //     this.$router.push('/')
+    //   } catch (e) {
+    //     console.log(e.message)
+    //   }
+    // }
   }
 }
 </script>

@@ -1,5 +1,3 @@
-
-
 const TOKEN_KEY = "token"
 const USER_INFO_KEY = "userInfo"
 

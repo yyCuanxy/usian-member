@@ -13,33 +13,34 @@ const routes = [
   {
     path: "/",
     name: "layout",
+    redirect: "/index",
     component: () => import("../layout"),
     // 
-    children:[
+    children: [
       {
-        path:'index',
-        name:"index",
-        component:()=>import('../views/index')
+        path: 'index',
+        name: "index",
+        component: () => import('../views/index')
       },
       {
-        path:'member',
-        name:"member",
-        component:()=>import('../views/member')
+        path: 'member',
+        name: "member",
+        component: () => import('../views/member')
       },
       {
-        path:'staff',
-        name:"staff",
-        component:()=>import('../views/staff')
+        path: 'staff',
+        name: "staff",
+        component: () => import('../views/staff')
       },
       {
-        path:'supplier',
-        name:"supplier",
-        component:()=>import('../views/supplier')
+        path: 'supplier',
+        name: "supplier",
+        component: () => import('../views/supplier')
       },
       {
-        path:'goods',
-        name:"goods",
-        component:()=>import('../views/goods')
+        path: 'goods',
+        name: "goods",
+        component: () => import('../views/goods')
       },
     ]
   }

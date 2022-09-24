@@ -1,19 +1,22 @@
 <template>
   <div>
+    <app-link v-if="controllLink"></app-link>
     <router-view> </router-view>
   </div>
 </template>
 
 <script>
+import AppLink from './Link'
 export default {
-  name: 'AppMain',
-  components: {},
-  data() {
-    return {}
+  name: 'index',
+  components: {
+    AppLink
   },
-  created() {},
-  mounted() {},
-  methods: {}
+  computed: {
+    controllLink() {
+      return !(this.$route.path === '/index')
+    }
+  }
 }
 </script>
 <style scoped lang='scss'>

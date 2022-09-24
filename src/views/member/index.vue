@@ -1,22 +1,20 @@
 <template>
-<div>
-  会员管理
-</div>
+  <div>
+    <div class="mt-2">会员管理</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: '',
   components: {},
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
-  created () { },
-  mounted () { },
+  created() {},
+  mounted() {},
   methods: {}
 }
 </script>
 <style scoped lang='scss'>
-
 </style>

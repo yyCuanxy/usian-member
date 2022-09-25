@@ -311,7 +311,7 @@ export default {
     async handleAddMember() {
       try {
         const response = await MemberApi.addMember(this.dialogFormParams)
-        this.handleReset('dialogForm')
+         this.handleReset('dialogForm')
         this.dialogFormVisible = false
         this.$message.success('新增成功')
         this.getMemberList()
@@ -320,37 +320,34 @@ export default {
       }
     },
     // 会员编辑
-    async handleEditMember() {
-      try {
-        const response = await MemberApi.editMember(
-          this.dialogFormParams.id,
-          this.dialogFormParams
-        )
-        this.handleReset('dialogForm')
+ async handleEditMember(){
+      try{
+        const response = await MemberApi.editMember(this.dialogFormParams.id, this.dialogFormParams)
+        this.handleReset("dialogForm")
         this.dialogFormVisible = false
-        this.$message.success('编辑成功')
+        this.$message.success("编辑成功")
         this.getMemberList()
-      } catch (e) {
+      }catch(e){
         console.log(e.message)
       }
     },
     /**
      * 查询单个会员数据
      */
-    async handleFindMember(id) {
-      try {
+    async handleFindMember(id){
+      try{
         const member = await MemberApi.findMember(id)
         this.dialogFormParams = member
-      } catch (e) {
+      }catch (e) {
         console.log(e.message)
       }
     },
     /**
      * 弹窗的取消按钮方法
      */
-    handleCancel() {
+    handleCancel(){
       this.dialogFormVisible = false
-      this.handleReset('dialogForm')
+      this.handleReset("dialogForm")
     }
   }
 }

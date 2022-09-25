@@ -11,14 +11,27 @@ const getMemberList = (page, size, data) => {
 }
 
 // 删除会员接口
-
+const deleteMemberList = (id) => {
+  return request({
+    url: `/member/${id}`,
+    method: 'DELETE'
+  })
+}
 // 添加会员接口
+const addMember = () => { }
 
 // 编辑会员接口
+const editMember = () => { }
+
 
 // 查询单个会员接口
+const findMember = () => { }
 
 
 export default {
   getMemberList,
+  deleteMemberList,
+  addMember,
+  editMember,
+  findMember
 }

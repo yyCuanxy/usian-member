@@ -60,7 +60,12 @@
         <el-table-column label="操作" width="200px">
           <template v-slot="scope">
             <el-button size="mini">编辑</el-button>
-            <el-button size="mini" type="danger">删除</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.row.id)"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -151,6 +156,29 @@ export default {
     // 表单重置
     handleReset(formName) {
       this.$refs[formName].resetFields()
+    },
+    // 删除会员功能
+    handleDelete(id) {
+      this.$confirm('确认删除这条记录吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(async () => {
+          try {
+            const response = await MemberApi.deleteMemberList(id)
+            this.$message.success('删除成功')
+            this.getMemberList()
+          } catch (e) {
+            console.log(e.message)
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   }
 }

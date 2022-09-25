@@ -46,7 +46,7 @@ export default new Vuex.Store({
         commit("SET_USER_INFO", userinfo)
         return userinfo
       } catch (e) {
-        console.log(message);
+        console.log(e.message);
       }
     },
     // 退出登录

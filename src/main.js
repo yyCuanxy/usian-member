@@ -9,7 +9,10 @@ import router from "./router";
 import store from "./store";
 
 import "./style/reset.css"
-import "./style/common.css"  
+import "./style/common.css"
+
+// 页面权限
+import "./permission"
 
 // 注册elementui
 Vue.use(ElementUI);

@@ -11,7 +11,14 @@ const getStaffList = (currentPage, pageSize, data) => {
     data
   })
 }
+const deleteStaffList = (id) => {
+  return request({
+    url: `/staff/${id}`,
+    method:'DELETE'
+  })
+}
 
 export default{
-  getStaffList
+  getStaffList,
+  deleteStaffList
 }

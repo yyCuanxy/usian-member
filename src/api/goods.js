@@ -11,7 +11,14 @@ const getGoodsList = (currentPage, pageSize, data) => {
     data
   })
 }
+const deleteGoodsList = (id) => {
+  return request({
+    url: `/goods/${id}`,
+    method:'DELETE'
+  })
+}
 
 export default{
-  getGoodsList
+  getGoodsList,
+  deleteGoodsList
 }

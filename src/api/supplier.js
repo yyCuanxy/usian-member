@@ -12,7 +12,16 @@ const getSupplierList = (currentPage, pageSize, data) => {
   })
 }
 
+// 删除供应商接口
+const deleteSupplierList = (id) => {
+  return request({
+    url: `/supplier/${id}`,
+    method:'DELETE'
+  })
+}
 
-export default{
-  getSupplierList
+
+export default {
+  getSupplierList,
+  deleteSupplierList
 }

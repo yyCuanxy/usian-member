@@ -1,25 +1,21 @@
 <template>
   <div>
     <div class="mt-2">
-      <el-form
-        :inline="true"
-        :model="GoodsQueryParams"
-        class="demo-form-inline"
-      >
-        <el-form-item>
+      <el-form ref="goodsQueryForm" :inline="true" :model="GoodsQueryParams">
+        <el-form-item prop="user">
           <el-input
             v-model="GoodsQueryParams.user"
             placeholder="商品名称"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="code">
           <el-input
             v-model="GoodsQueryParams.code"
             placeholder="商品编号"
           ></el-input>
         </el-form-item>
 
-        <el-form-item>
+        <el-form-item prop="supplierName">
           <el-input
             v-model="GoodsQueryParams.supplierName"
             placeholder="选择供应商"
@@ -29,7 +25,7 @@
         <el-form-item>
           <el-button type="primary" @click="handleQueryGoods">查询</el-button>
           <el-button type="primary">新增</el-button>
-          <el-button>重置</el-button>
+          <el-button @click="handleReset('goodsQueryForm')">重置</el-button>
         </el-form-item>
       </el-form>
       <el-table :data="goodsList" height="380" border style="width: 100%">
@@ -110,9 +106,13 @@ export default {
       this.currentPage = currentPage
       this.getGoodsList()
     },
-    handleQueryGoods(){
-      this.currentPage=1
+    handleQueryGoods() {
+      this.currentPage = 1
       this.getGoodsList()
+    },
+    // 表单重置
+    handleReset(formName) {
+      this.$refs[formName].resetFields()
     }
   }
 }

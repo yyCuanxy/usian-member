@@ -1,19 +1,15 @@
 <template>
   <div>
     <div class="mt-2">
-      <el-form
-        :inline="true"
-        :model="StaffQueryParams"
-        class="demo-form-inline"
-      >
-        <el-form-item label="审批人">
+      <el-form ref="staffQueryForm" :inline="true" :model="StaffQueryParams">
+        <el-form-item prop="username">
           <el-input
             v-model="StaffQueryParams.username"
             placeholder="账号"
           ></el-input>
         </el-form-item>
 
-        <el-form-item>
+        <el-form-item prop="name">
           <el-input
             v-model="StaffQueryParams.name"
             placeholder="姓名"
@@ -23,7 +19,7 @@
         <el-form-item>
           <el-button type="primary" @click="handleQueryStaff">查询</el-button>
           <el-button type="primary">新增</el-button>
-          <el-button>重置</el-button>
+          <el-button @click="handleReset('staffQueryForm')">重置</el-button>
         </el-form-item>
       </el-form>
       <el-table :data="staffList" height="380" border style="width: 100%">
@@ -102,9 +98,13 @@ export default {
       this.currentPage = currentPage
       this.getStaffList()
     },
-    handleQueryStaff(){
-      this.currentPage=1
+    handleQueryStaff() {
+      this.currentPage = 1
       this.getStaffList
+    },
+    // 表单重置
+    handleReset(formName) {
+      this.$refs[formName].resetFields()
     }
   }
 }

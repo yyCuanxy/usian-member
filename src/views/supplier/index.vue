@@ -2,32 +2,34 @@
   <div>
     <div class="mt-2">
       <el-form
+        ref="supplierQueryForm"
         :inline="true"
         :model="SupplierQueryParams"
-        class="demo-form-inline"
       >
-        <el-form-item>
+        <el-form-item prop="name">
           <el-input
             v-model="SupplierQueryParams.name"
             placeholder="供应商名称"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="linkman">
           <el-input
             v-model="SupplierQueryParams.linkman"
             placeholder="联系人"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="mobile">
           <el-input
             v-model="SupplierQueryParams.mobile"
             placeholder="联系电话"
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleQuerySupplier">查询</el-button>
+          <el-button type="primary" @click="handleQuerySupplier"
+            >查询</el-button
+          >
           <el-button type="primary">新增</el-button>
-          <el-button>重置</el-button>
+          <el-button @click="handleReset('supplierQueryForm')">重置</el-button>
         </el-form-item>
       </el-form>
       <el-table :data="supplierList" height="380" border style="width: 100%">
@@ -108,9 +110,13 @@ export default {
       this.getSupplierList()
     },
     // 供应商查询功能
-    handleQuerySupplier(){
-      this.currentPage=1
+    handleQuerySupplier() {
+      this.currentPage = 1
       this.getSupplierList()
+    },
+    // 表单重置
+    handleReset(formName) {
+       this.$refs[formName].resetFields();
     }
   }
 }

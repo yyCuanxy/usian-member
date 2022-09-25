@@ -1,24 +1,20 @@
 <template>
   <div>
     <div class="mt-2">
-      <el-form
-        :inline="true"
-        :model="memberQueryParams"
-        class="demo-form-inline"
-      >
-        <el-form-item>
+      <el-form ref="memberQueryForm" :inline="true" :model="memberQueryParams">
+        <el-form-item prop="cardNum">
           <el-input
             v-model="memberQueryParams.cardNum"
             placeholder="会员卡号"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="name">
           <el-input
             v-model="memberQueryParams.name"
             placeholder="会员姓名"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="payType">
           <el-select v-model="memberQueryParams.payType" placeholder="支付类型">
             <el-option
               v-for="(item, index) in payType"
@@ -28,7 +24,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="birthday">
           <el-date-picker
             value-format="yyyy-MM-dd"
             v-model="memberQueryParams.birthday"
@@ -40,7 +36,7 @@
         <el-form-item>
           <el-button type="primary" @click="handleQueryMember">查询</el-button>
           <el-button type="primary">查询</el-button>
-          <el-button>重置</el-button>
+          <el-button @click="handleReset('memberQueryForm')">重置</el-button>
         </el-form-item>
       </el-form>
 
@@ -116,7 +112,7 @@ export default {
     filterPayType(value) {
       // console.log(value)
       // return MemberEnum.payType[value]
-      const data = MemberEnum.payType.find((item, index) => {
+      const data = MemberEnum.payType.find((item) => {
         return item.type === value
       })
       return data ? data.name : ''
@@ -146,10 +142,15 @@ export default {
       this.page = page
       this.getMemberList()
     },
+    // 会员查询功能
     handleQueryMember() {
       console.log(this.memberQueryParams)
       this.page = 1
       this.getMemberList()
+    },
+    // 表单重置
+    handleReset(formName) {
+      this.$refs[formName].resetFields()
     }
   }
 }

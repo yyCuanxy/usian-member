@@ -17,8 +17,14 @@ const deleteMemberList = (id) => {
     method: 'DELETE'
   })
 }
-// 添加会员接口
-const addMember = () => { }
+// 新增会员接口
+const addMember = (data) => {
+  return request({
+    url: `/member`,
+    method: 'POST',
+    data
+  })
+}
 
 // 编辑会员接口
 const editMember = () => { }
